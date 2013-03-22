@@ -1,11 +1,8 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'tidy_logger/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'tidy_logger'
-  spec.version       = TidyLogger::VERSION
+  spec.version       = '1.0.1' # retrieve this value by: Gem.loaded_specs['redis-mutex'].version.to_s
   spec.authors       = ['Kenn Ejima']
   spec.email         = ['kenn.ejima@gmail.com']
   spec.description   = %q{TidyLogger: Better API for Ruby’s stdlib Logger}
