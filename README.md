@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kenn/tidy_logger.png)](https://travis-ci.org/kenn/tidy_logger)
 
-Better API for Ruby’s stdlib Logger
+Better API for Ruby’s stdlib Logger.
 
 ## Installation
 
@@ -16,6 +16,8 @@ gem 'tidy_logger'
 
 Ruby's stdlib `Logger` is great. It gives you so many features that you don't want to reinvent.
 
+But, don't you think the default format is ugly? I do!
+
 ```ruby
 require 'logger'
 
@@ -23,23 +25,15 @@ logger = Logger.new(STDOUT)
 logger.info 'hello world!'      # => "I, [2013-03-21T19:46:31.703381 #27585]  INFO -- : hello world!\n"
 ```
 
-But, don't you think the default format is ugly? I do!
+Here comes TidyLogger. It's a thin API wrapper for and a subclass of the stdlib Logger. It's 100% compatible and you can use TidyLogger and Logger interchangeably - the only method that's added to Logger is `config`. When you call it, all the shapeshifting happens.
 
-Here comes TidyLogger. It is a subclass of and 100% compatible with the stdlib Logger. You can use it and Logger interchangeably.
+Supported options are `plain`, `time`, `title`, `time_and_level` (chosen when no argument is given), `ltsv` ([Labeled Tab-Separated Values](http://ltsv.org)) and lambdas.
 
 ```ruby
 require 'tidy_logger'
 
 logger = TidyLogger.new(STDOUT)
 logger.info 'hello world!'      # => "I, [2013-03-21T19:46:31.703381 #27585]  INFO -- : hello world!\n"
-```
-
-The only method that's added to Logger is `config` - when you call it, all the shapeshifting happens.
-
-Supported options are `plain`, `time`, `title`, `time_and_level` (chosen when no argument is given), `ltsv` ([Labeled Tab-Separated Values](http://ltsv.org)) and lambdas.
-
-```ruby
-logger = TidyLogger.new(STDOUT)
 
 logger.config
 logger.info 'hello'             # => "[2013-03-21T21:19:54]  INFO : hello"
@@ -60,10 +54,23 @@ logger.config lambda{|_,_,_,msg| "///do crazy stuff/// #{msg}\n" }
 logger.info 'hello'             # => "///do crazy stuff/// hello"
 ```
 
+The lambda takes `(severity, time, progname, msg)` as arguments.
+
+### Bonus
+
 The `config` method returns self, so that you can tidy up in method chain.
 
 ```ruby
-logger = TidyLogger.new(STDOUT).config(:plain)
+logger = TidyLogger.new(STDOUT).config(:plain)      # One-liner initialization
 
-logger.config(:plain).info 'foo'
+logger.config(:plain).info 'hello'                  # One-off config switch
+```
+
+It's just a Logger, you can use every feature that comes with Logger.
+
+```ruby
+logger = TidyLogger.new('my.log', 'daily').config
+logger = TidyLogger.new('my.log', 7, 10.megabytes).config
+
+logger.debug { "Total users: #{User.count}" }       # Do not run the heavy query on production
 ```
