@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = TidyLogger::VERSION
   spec.authors       = ['Kenn Ejima']
   spec.email         = ['kenn.ejima@gmail.com']
-  spec.description   = %q{TidyLogger: Logger on Steroids}
-  spec.summary       = %q{TidyLogger: Logger on Steroids}
+  spec.description   = %q{TidyLogger: Better API for Ruby’s stdlib Logger}
+  spec.summary       = %q{TidyLogger: Better API for Ruby’s stdlib Logger}
   spec.homepage      = 'https://github.com/kenn/tidy_logger'
   spec.license       = 'MIT'
 

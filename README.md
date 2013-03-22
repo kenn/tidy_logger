@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/kenn/tidy_logger.png)](https://travis-ci.org/kenn/tidy_logger)
 
+Better API for Ruby’s stdlib Logger
+
 ## Installation
 
 Add this line to your application's Gemfile:
