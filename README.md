@@ -16,7 +16,7 @@ gem 'tidy_logger'
 
 Ruby's stdlib `Logger` is great. It gives you so many features that you don't want to reinvent.
 
-But, don't you think the default format is ugly? I do!
+But, don't you think the default format is verbose and ugly? I do!
 
 ```ruby
 require 'logger'
@@ -27,7 +27,7 @@ logger.info 'hello world!'      # => "I, [2013-03-21T19:46:31.703381 #27585]  IN
 
 Here comes TidyLogger. It's a thin API wrapper for and a subclass of the stdlib Logger. It's 100% compatible and you can use TidyLogger and Logger interchangeably - the only method that's added to Logger is `config`. When you call it, all the shapeshifting happens.
 
-Supported options are `plain`, `time`, `title`, `time_and_level` (chosen when no argument is given), `ltsv` ([Labeled Tab-Separated Values](http://ltsv.org)) and lambdas.
+Supported config options are `:plain`, `:time`, `:title`, `:time_and_level` (chosen when no argument is given), `:ltsv` ([Labeled Tab-Separated Values](http://ltsv.org)) and lambdas.
 
 ```ruby
 require 'tidy_logger'
